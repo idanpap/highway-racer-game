@@ -6,17 +6,17 @@ class Background {
     }
   
     drawBackground() {
-      this.y--
+      this.y -= 1
       // define the draw logic  for the moving background here
   
       this.images.forEach((picture) => {
-        picture.x += picture.speed;
-        image(picture.src, 0, this.y ,width, height);
-        image(picture.src, 0, this.y - height,width, height);
+        picture.y += picture.speed;
+        image(picture.src, 0, picture.y ,width, height);
+        image(picture.src, 0, picture.y - height,width, height);
   
-        // if (picture.y < 0) {
-        //   picture.y = height;
-        // }
+        if (picture.y > height) {
+          picture.y = 0;
+        }
       });
     }
   }
