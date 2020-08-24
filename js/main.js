@@ -15,12 +15,12 @@ function draw() {
 function keyPressed() {
     
     if (keyCode === 37) {
-        console.log(game.player.x)
+        // console.log()
       game.player.moveLeft();
     }
   
     if (keyCode === 39) {
-        console.log(game.player.x)
+        // console.log()
       game.player.moveRight();
     }
 }
