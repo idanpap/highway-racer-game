@@ -1,8 +1,9 @@
 class Game {
     constructor() {
       this.obstacles = [];
-      this.coins1 = []
-      this.coins5 = []
+      this.trucks = [];
+      this.coins1 = [];
+      this.coins5 = [];
       this.score = 0;
     }
     
@@ -50,7 +51,7 @@ class Game {
       }
 
       if (frameCount % 231 === 0) {
-        this.obstacles.push(new TruckObstacle(this.truckImg))
+        this.trucks.push(new TruckObstacle(this.truckImg))
       }
 
       if (frameCount % 411 === 0) {
@@ -66,6 +67,10 @@ class Game {
         obstacle.drawObstacle();
       })
 
+      this.trucks.forEach(obstacle => {
+        obstacle.drawTruckObstacle();
+      })
+
       this.coins1.forEach(coin => {
         coin.drawCoin1();
       })
@@ -76,13 +81,13 @@ class Game {
 
       this.coins5 = this.coins5.filter((coin) => {
         if(coin.collision(this.player)) {
-          // this.score.push(1);
-          // this.score.push(1);
-          // this.score.push(1);
-          // this.score.push(1);
-          // this.score.push(1);
           this.score += 5
           document.querySelector('h2 span').innerHTML = this.score;
+          if (this.score >= 25) {
+            frameRate(0);
+            // alert(`After collecting ${this.score} points you have won! Please click on ok to restart`)
+            // location.reload()
+          }
           return false
         } else {
           return true
@@ -91,9 +96,28 @@ class Game {
 
       this.coins1 = this.coins1.filter((coin) => {
         if(coin.collision(this.player)) {
-          // this.score.push(1)
           this.score += 1
           document.querySelector('h2 span').innerHTML = this.score;
+          if (this.score >= 25) {
+            frameRate(0);
+            // alert(`After collecting ${this.score} points you have won! Please click on ok to restart`)
+            // location.reload()
+          }
+          return false
+        } else {
+          return true
+        }
+      })
+
+      this.trucks = this.trucks.filter((truck) => {
+        if(truck.collision(this.player)) {
+          // this.score -= 10
+          // document.querySelector('h2 span').innerHTML = this.score;
+          // if (this.score < 0) {
+            frameRate(0);
+            // alert('Game over! Click on ok to start again :)')
+            // location.reload()
+          // }
           return false
         } else {
           return true
@@ -102,13 +126,13 @@ class Game {
       
       this.obstacles = this.obstacles.filter((obstacle) => {
         if(obstacle.collision(this.player)) {
-          // this.score.pop()
-          // this.score.pop()
-          this.score -= 2
-          document.querySelector('h2 span').innerHTML = this.score;
-          if (this.score.length === 0) {
-            console.log('Give up mate')
-          }
+          // this.score -= 5
+          // document.querySelector('h2 span').innerHTML = this.score;
+          // if (this.score < 0) {
+            frameRate(0);
+            // alert('Game over! Click on ok to start again :)')
+            // location.reload()
+          // }
           return false
         } else {
           return true

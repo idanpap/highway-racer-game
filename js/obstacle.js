@@ -15,7 +15,7 @@ class Obstacle {
       let playerX = playerInfo.x + playerInfo.width/2;
       let playerY = playerInfo.y + playerInfo.width/2;
       
-      if (dist(obstacleX, obstacleY, playerX, playerY) < 55) {
+      if (dist(obstacleX, obstacleY, playerX, playerY) < 70) {
 
         return true;
         // alert('you have failed, you may as well give up now')

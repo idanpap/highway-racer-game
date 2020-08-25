@@ -14,7 +14,7 @@ class TruckObstacle {
       let playerX = playerInfo.x + playerInfo.width/2;
       let playerY = playerInfo.y + playerInfo.width/2;
       
-      if (dist(obstacleTruckX, obstacleTruckY, playerX, playerY) < 55) {
+      if (dist(obstacleTruckX, obstacleTruckY, playerX, playerY) < 70) {
         return true;
         // alert('you have failed, you may as well give up now')
         
@@ -22,7 +22,7 @@ class TruckObstacle {
     //   alert('you have failed')
     }
   
-    drawObstacle() {
+    drawTruckObstacle() {
         this.y += 4;
         if (frameCount %  2 === 0) {
          this.y += 0.5;
