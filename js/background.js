@@ -17,9 +17,9 @@ class Background {
         if (picture.y > height) {
           picture.y = 0;
         }
-        // if (frameCount % 120 === 0 && picture.speed < 50) {
-        //     picture.speed += 2
-        //   }
+        if (frameCount % 120 === 0 && picture.speed < 50) {
+            picture.speed += 1
+          }
       });
     }
   }

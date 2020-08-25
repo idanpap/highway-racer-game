@@ -1,15 +1,22 @@
 class Game {
     constructor() {
-      this.obstacles = []
+      this.obstacles = [];
+      this.coins1 = []
+      this.coins5 = []
+      this.score = 0;
     }
     
     preloadGame() {
       this.backgroundImgs = [{
-        src: loadImage("2D Traffic Racer Assets/road cropped.png"), y:0, speed: 2
+        src: loadImage("2D Traffic Racer Assets/road cropped.png"), y:0, speed: 1
       }]
       this.playerImg = loadImage("2D Traffic Racer Assets/userCar.png");
       this.carImg = loadImage("2D Traffic Racer Assets/croppedObstacleCar.png");
       this.orangeCarImg = loadImage("2D Traffic Racer Assets/orangeCarObstacle.png");
+      this.racingCarImg = loadImage("2D Traffic Racer Assets/racingCarBrown.png");
+      this.truckImg = loadImage("2D Traffic Racer Assets/redTruck.png");
+      this.coin1Img = loadImage("2D Traffic Racer Assets/coin.png");
+      this.coin5Img = loadImage("2D Traffic Racer Assets/coin5.png")
     }
     
     setupGame() {
@@ -25,13 +32,32 @@ class Game {
       clear();
       this.background.drawBackground()
       this.player.drawPlayer()
+
       
-      if (frameCount % 90 === 0) {
+      
+      if (frameCount % 291 === 0) {
         this.obstacles.push(new Obstacle(this.carImg))
       }
-      
-      if (frameCount % 120 === 0) {
+      // if (frameCount % 60 === 0) {
+        // console.log(`second is : ${second()} and frame is ${frameCount}`)
+      // }
+      if (frameCount % 163 === 0) {
         this.obstacles.push(new Obstacle(this.orangeCarImg))
+      }
+
+      if (frameCount % 114 === 0) {
+        this.obstacles.push(new Obstacle(this.racingCarImg))
+      }
+
+      if (frameCount % 231 === 0) {
+        this.obstacles.push(new TruckObstacle(this.truckImg))
+      }
+
+      if (frameCount % 411 === 0) {
+        this.coins1.push(new Coin1(this.coin1Img))
+      }
+      if (frameCount % 924 === 0) {
+        this.coins5.push(new Coin5(this.coin5Img))
       }
 
       
@@ -39,9 +65,50 @@ class Game {
       this.obstacles.forEach(obstacle => {
         obstacle.drawObstacle();
       })
+
+      this.coins1.forEach(coin => {
+        coin.drawCoin1();
+      })
+
+      this.coins5.forEach(coin => {
+        coin.drawCoin5();
+      })
+
+      this.coins5 = this.coins5.filter((coin) => {
+        if(coin.collision(this.player)) {
+          // this.score.push(1);
+          // this.score.push(1);
+          // this.score.push(1);
+          // this.score.push(1);
+          // this.score.push(1);
+          this.score += 5
+          document.querySelector('h2 span').innerHTML = this.score;
+          return false
+        } else {
+          return true
+        }
+      })
+
+      this.coins1 = this.coins1.filter((coin) => {
+        if(coin.collision(this.player)) {
+          // this.score.push(1)
+          this.score += 1
+          document.querySelector('h2 span').innerHTML = this.score;
+          return false
+        } else {
+          return true
+        }
+      })
       
       this.obstacles = this.obstacles.filter((obstacle) => {
         if(obstacle.collision(this.player)) {
+          // this.score.pop()
+          // this.score.pop()
+          this.score -= 2
+          document.querySelector('h2 span').innerHTML = this.score;
+          if (this.score.length === 0) {
+            console.log('Give up mate')
+          }
           return false
         } else {
           return true

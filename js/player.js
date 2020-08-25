@@ -9,11 +9,15 @@ class Player {
     }
 
     moveRight() {
-        this.x += 115;
+        if (this.x < 500) {
+            this.x += 115;
+        }
     }
 
     moveLeft() {
-        this.x -= 115;
+        if (this.x > 40) {
+            this.x -= 115;
+        }
     }
     drawPlayer() {
       image(this.image, this.x, this.y, this.height, this.width)
