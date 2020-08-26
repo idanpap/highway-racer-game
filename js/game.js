@@ -42,7 +42,7 @@ class Game {
         this.obstacles.push(new Obstacle(this.carImg))
       }
 
-      if (frameCount % 147 === 0) {
+      if (frameCount % 137 === 0) {
         // console.log('Orange car:',frameCount)
         this.obstacles.push(new Obstacle(this.orangeCarImg))
       }
@@ -77,10 +77,10 @@ class Game {
         this.trucks.push(new TruckObstacle(this.truckImg))
       }
 
-      if (frameCount % 411 === 0) {
+      if (frameCount % 234 === 0) {
         this.coins1.push(new Coin1(this.coin1Img))
       }
-      if (frameCount % 924 === 0) {
+      if (frameCount % 369 === 0) {
         this.coins5.push(new Coin5(this.coin5Img))
       }
       if (frameCount > 2500 && frameCount % 99 === 0 ) {
@@ -110,6 +110,7 @@ class Game {
           this.score += 2500
           document.querySelector('h2 span').innerHTML = `€${this.score}`;
           if (this.score >= 7500) {
+            this.coin5Img = loadImage("2D Traffic Racer Assets/explosion.gif")
             frameRate(0);
             alert(`You won! You raised enough cash to join Ironhack. Click on ok and then new game to start again`)
           }
@@ -124,6 +125,8 @@ class Game {
           this.score += 1000
           document.querySelector('h2 span').innerHTML = `€${this.score}`;
           if (this.score >= 7500) {
+            this.coin1Img = loadImage("2D Traffic Racer Assets/explosion.gif")
+
             frameRate(0);
             alert(`You won! You raised enough cash to join Ironhack. Click on ok and then new game to start again`)
           

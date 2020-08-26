@@ -6,7 +6,6 @@ function preload() {
 function setup() {
     const canvas = createCanvas(600,600);
     canvas.parent('sketch-holder');
-    text('tap here to play', 10, 20);
     game.setupGame();
     
 }
