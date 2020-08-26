@@ -16,7 +16,7 @@ class TruckObstacle {
       let playerX = playerInfo.x + playerInfo.width/2;
       let playerY = playerInfo.y + playerInfo.width/2;
       
-      if (dist(obstacleTruckX, obstacleTruckY, playerX, playerY) < 70) {
+      if (dist(obstacleTruckX, obstacleTruckY, playerX, playerY) < 60) {
         return true;
         
       } 

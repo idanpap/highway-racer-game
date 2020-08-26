@@ -107,12 +107,11 @@ class Game {
 
       this.coins5 = this.coins5.filter((coin) => {
         if(coin.collision(this.player)) {
-          this.score += 5
-          document.querySelector('h2 span').innerHTML = this.score;
-          if (this.score >= 25) {
+          this.score += 2500
+          document.querySelector('h2 span').innerHTML = `€${this.score}`;
+          if (this.score >= 7500) {
             frameRate(0);
-            // alert(`After collecting ${this.score} points you have won! Please click on ok to restart`)
-            // location.reload()
+            alert(`You won! You raised enough cash to join Ironhack. Click on ok and then new game to start again`)
           }
           return false
         } else {
@@ -122,12 +121,13 @@ class Game {
 
       this.coins1 = this.coins1.filter((coin) => {
         if(coin.collision(this.player)) {
-          this.score += 1
-          document.querySelector('h2 span').innerHTML = this.score;
-          if (this.score >= 25) {
+          this.score += 1000
+          document.querySelector('h2 span').innerHTML = `€${this.score}`;
+          if (this.score >= 7500) {
             frameRate(0);
-            // alert(`After collecting ${this.score} points you have won! Please click on ok to restart`)
-            // location.reload()
+            alert(`You won! You raised enough cash to join Ironhack. Click on ok and then new game to start again`)
+          
+            
           }
           return false
         } else {
@@ -137,7 +137,9 @@ class Game {
 
       this.trucks = this.trucks.filter((truck) => {
         if(truck.collision(this.player)) {
-            frameRate(0);
+          frameRate(0);
+          alert(`You crashed! You collected €${this.score}, which is not enough for Ironhack. Press okay and then new game to start again.`)
+          // location.reload()
             return false
         } else {
             return true
@@ -147,6 +149,8 @@ class Game {
       this.obstacles = this.obstacles.filter((obstacle) => {
         if(obstacle.collision(this.player)) {
           frameRate(0);
+          alert(`You crashed! You collected €${this.score}, which is not enough for Ironhack. Press okay and then new game to start again.`)
+          // location.reload()
           return false
         } else {
           return true

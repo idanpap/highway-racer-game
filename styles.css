@@ -29,9 +29,6 @@ body {
     color: black;
   }
 
-  /* .image {
-    display: flex;
-    position: fixed;
-    position: relative;
-    z-index: 10;
-  } */
+  h3 {
+    text-align: center;
+  }

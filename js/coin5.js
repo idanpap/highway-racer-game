@@ -1,7 +1,7 @@
 class Coin5 {
     constructor(img) {
-      this.height = 40;
-      this.width = 40;
+      this.height = 60;
+      this.width = 60;
       this.positioning = [40, 155, 270, 385, 500]
     //   this.x = Math.random() * ((560 - 40) + 40)/1.5;
       this.x = this.positioning[Math.floor(Math.random() * 5) + 0 ]
