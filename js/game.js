@@ -17,7 +17,7 @@ class Game {
       this.racingCarImg = loadImage("2D Traffic Racer Assets/racingCarBrown.png");
       this.truckImg = loadImage("2D Traffic Racer Assets/redTruck.png");
       this.coin1Img = loadImage("2D Traffic Racer Assets/coin.png");
-      this.coin5Img = loadImage("2D Traffic Racer Assets/coin5.png")
+      this.coin5Img = loadImage("2D Traffic Racer Assets/coin5.png");
     }
     
     setupGame() {
@@ -31,26 +31,49 @@ class Game {
     
     drawGame() {
       clear();
+      // console.log(frameCount)
       this.background.drawBackground()
       this.player.drawPlayer()
 
       
       
-      if (frameCount % 291 === 0) {
+      if (frameCount % 107 === 0) {
+        // console.log('Brown:',frameCount)
         this.obstacles.push(new Obstacle(this.carImg))
       }
-      // if (frameCount % 60 === 0) {
-        // console.log(`second is : ${second()} and frame is ${frameCount}`)
-      // }
-      if (frameCount % 163 === 0) {
+
+      if (frameCount % 147 === 0) {
+        // console.log('Orange car:',frameCount)
         this.obstacles.push(new Obstacle(this.orangeCarImg))
       }
 
-      if (frameCount % 114 === 0) {
-        this.obstacles.push(new Obstacle(this.racingCarImg))
+      if (frameCount % 221 === 0) {
+        // console.log('Racing car:',frameCount)
+        this.obstacles.push(new ObstacleLane3(this.racingCarImg))
       }
 
-      if (frameCount % 231 === 0) {
+      if (frameCount % 187 === 0) {
+        // console.log('Orange car:',frameCount)
+        this.obstacles.push(new ObstacleLane3(this.orangeCarImg))
+      }
+
+      if (frameCount % 122 === 0) {
+        // console.log('Orange car:',frameCount)
+        this.obstacles.push(new ObstacleLane5(this.orangeCarImg))
+      }
+
+      if (frameCount % 183 === 0) {
+        // console.log('Orange car:',frameCount)
+        this.obstacles.push(new ObstacleLane5(this.carImg))
+      }
+
+      if (frameCount % 131 === 0) {
+        // console.log('truck:',frameCount)
+        this.trucks.push(new TruckObstacle(this.truckImg))
+      }
+
+      if (frameCount % 171 === 0 && frameCount > 2300) {
+        // console.log('truck:',frameCount)
         this.trucks.push(new TruckObstacle(this.truckImg))
       }
 
@@ -59,6 +82,9 @@ class Game {
       }
       if (frameCount % 924 === 0) {
         this.coins5.push(new Coin5(this.coin5Img))
+      }
+      if (frameCount > 2500 && frameCount % 99 === 0 ) {
+        this.obstacles.push(new Obstacle(this.carImg))
       }
 
       
@@ -111,28 +137,16 @@ class Game {
 
       this.trucks = this.trucks.filter((truck) => {
         if(truck.collision(this.player)) {
-          // this.score -= 10
-          // document.querySelector('h2 span').innerHTML = this.score;
-          // if (this.score < 0) {
             frameRate(0);
-            // alert('Game over! Click on ok to start again :)')
-            // location.reload()
-          // }
-          return false
+            return false
         } else {
-          return true
+            return true
         }
       })
       
       this.obstacles = this.obstacles.filter((obstacle) => {
         if(obstacle.collision(this.player)) {
-          // this.score -= 5
-          // document.querySelector('h2 span').innerHTML = this.score;
-          // if (this.score < 0) {
-            frameRate(0);
-            // alert('Game over! Click on ok to start again :)')
-            // location.reload()
-          // }
+          frameRate(0);
           return false
         } else {
           return true

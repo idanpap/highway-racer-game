@@ -4,7 +4,8 @@ function preload() {
     game.preloadGame();
 }
 function setup() {
-    createCanvas(600,600);
+    const canvas = createCanvas(600,600);
+    canvas.parent('sketch-holder');
     game.setupGame();
     
 }

@@ -1,8 +1,8 @@
-class Obstacle {
+class ObstacleLane5 {
     constructor(img) {
       this.height = 90;
       this.width = 60;
-      this.x = 40
+      this.x = 500
       this.y = -20;
       this.image = img;
     }
@@ -21,17 +21,20 @@ class Obstacle {
     }
   
     drawObstacle() {
+    //    this.y += 4;
+    //    if (frameCount >  400) {
+    //     this.y += 1;
+    //   }
       this.y += 4;
-      if (frameCount %  2 === 0) {
-       this.y += 0.5;
-     }
-      // }
-      // if (frameCount >  800) {
-      //   this.y += 2;
-      // }
-      // if (frameCount >  1200) {
-      //   this.y += 2;
-      // }
+        if (frameCount %  2 === 0) {
+         this.y += 0.5;
+       }
+    //   if (frameCount >  800) {
+    //     this.y += 2;
+    //   }
+    //   if (frameCount >  1200) {
+    //     this.y += 2;
+    //   }
       
        
       image(this.image, this.x, this.y, this.width, this.height)

@@ -6,6 +6,7 @@ class Player {
       this.y = 500;
   
       this.image;
+      this.collisionImg;
     }
 
     moveRight() {
@@ -19,6 +20,8 @@ class Player {
             this.x -= 115;
         }
     }
+
+
     drawPlayer() {
       image(this.image, this.x, this.y, this.height, this.width)
     }
