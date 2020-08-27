@@ -43,7 +43,7 @@ class Game {
 
       
       
-      if (frameCount % 97 === 0) {
+      if (frameCount % 220 === 0) {
         this.obstacles.push(new Obstacle(this.carImg))
       }
 
@@ -51,19 +51,19 @@ class Game {
         this.obstacles.push(new Obstacle(this.orangeCarImg))
       }
 
-      if (frameCount % 206 === 0) {
+      if (frameCount % 243 === 0) {
         this.obstacles.push(new ObstacleLane3(this.racingCarImg))
       }
 
-      if (frameCount % 171 === 0) {
+      if (frameCount % 199 === 0) {
         this.obstacles.push(new ObstacleLane3(this.orangeCarImg))
       }
 
-      if (frameCount % 120 === 0) {
+      if (frameCount % 170 === 0) {
         this.obstacles.push(new ObstacleLane5(this.orangeCarImg))
       }
 
-      if (frameCount % 153 === 0) {
+      if (frameCount % 250 === 0) {
         this.obstacles.push(new ObstacleLane5(this.carImg))
       }
 
