@@ -21,12 +21,11 @@ class Game {
       this.coin1Img = loadImage("2D Traffic Racer Assets/coin.png");
       this.coin5Img = loadImage("2D Traffic Racer Assets/coin5.png");
       this.endGameImg = loadImage("2D Traffic Racer Assets/carStuck.png");
-      this.winGameImg = loadImage("2D Traffic Racer Assets/confettiNoEdit (1).png")
+      this.winGameImg = loadImage("2D Traffic Racer Assets/confettiNoEdit (1).png");
+      this.crashSound = loadSound("2D Traffic Racer Assets/Explosion+3.mp3");
     }
     
     setupGame() {
-      // this.obstacle = new Obstacle()
-      // this.obstacle.image = this.carImg;
       this.background = new Background ();
       this.background.images = this.backgroundImgs
       this.player = new Player();
@@ -44,31 +43,31 @@ class Game {
 
       
       
-      if (frameCount % 107 === 0) {
+      if (frameCount % 97 === 0) {
         this.obstacles.push(new Obstacle(this.carImg))
       }
 
-      if (frameCount % 139 === 0) {
+      if (frameCount % 125 === 0) {
         this.obstacles.push(new Obstacle(this.orangeCarImg))
       }
 
-      if (frameCount % 226 === 0) {
+      if (frameCount % 206 === 0) {
         this.obstacles.push(new ObstacleLane3(this.racingCarImg))
       }
 
-      if (frameCount % 187 === 0) {
+      if (frameCount % 171 === 0) {
         this.obstacles.push(new ObstacleLane3(this.orangeCarImg))
       }
 
-      if (frameCount % 122 === 0) {
+      if (frameCount % 120 === 0) {
         this.obstacles.push(new ObstacleLane5(this.orangeCarImg))
       }
 
-      if (frameCount % 163 === 0) {
+      if (frameCount % 153 === 0) {
         this.obstacles.push(new ObstacleLane5(this.carImg))
       }
 
-      if (frameCount % 149 === 0) {
+      if (frameCount % 139 === 0) {
         this.trucks.push(new TruckObstacle(this.truckImg))
       }
 
@@ -135,6 +134,7 @@ class Game {
 
       this.trucks = this.trucks.filter((truck) => {
         if(truck.collision(this.player)) {
+          this.crashSound.play()
           frameRate(0);
           this.screen.drawScreen();
           // alert(`You crashed! You collected €${this.score}, which is not enough for Ironhack. Press okay and then new game to start again.`)
@@ -146,6 +146,7 @@ class Game {
       
       this.obstacles = this.obstacles.filter((obstacle) => {
         if(obstacle.collision(this.player)) {
+          this.crashSound.play()
           frameRate(0);
           this.screen.drawScreen();
           // alert(`You crashed! You collected €${this.score}, which is not enough for Ironhack. Press okay and then new game to start again.`)

@@ -1,10 +1,12 @@
 const game = new Game();
 let mode;
 let img;
+let sound;
 
 function preload() {
     game.preloadGame();
     img = loadImage("2D Traffic Racer Assets/CarRacingGIF.gif");
+    sound = loadSound("2D Traffic Racer Assets/POL-its-a-blast-short.wav")
 }
 function setup() {
     mode = 0;
@@ -32,6 +34,7 @@ function draw() {
 
 function keyPressed() {
     if (keyCode === 13){
+        sound.loop()
         mode = 1;
     }
     
