@@ -15,7 +15,7 @@ class ObstacleLane3 {
       
       if (dist(obstacleX, obstacleY, playerX, playerY) < 60) {
         return true;
-        // alert('you have failed, you may as well give up now')
+        
         
       } 
     }

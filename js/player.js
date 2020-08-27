@@ -2,7 +2,7 @@ class Player {
     constructor() {
       this.height = 60;
       this.width = 90;
-      this.x = 40 ;
+      this.x = 270 ;
       this.y = 500;
   
       this.image;

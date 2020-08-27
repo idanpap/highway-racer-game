@@ -5,6 +5,8 @@ class Game {
       this.coins1 = [];
       this.coins5 = [];
       this.score = 0;
+      this.screen = [];
+      this.winScreen = [];
     }
     
     preloadGame() {
@@ -18,6 +20,8 @@ class Game {
       this.truckImg = loadImage("2D Traffic Racer Assets/redTruck.png");
       this.coin1Img = loadImage("2D Traffic Racer Assets/coin.png");
       this.coin5Img = loadImage("2D Traffic Racer Assets/coin5.png");
+      this.endGameImg = loadImage("2D Traffic Racer Assets/carStuck.png");
+      this.winGameImg = loadImage("2D Traffic Racer Assets/confettiNoEdit (1).png")
     }
     
     setupGame() {
@@ -27,60 +31,55 @@ class Game {
       this.background.images = this.backgroundImgs
       this.player = new Player();
       this.player.image = this.playerImg;
+      this.screen = new FinalScreen();
+      this.screen.image = this.endGameImg;
+      this.winScreen = new WinScreen();
+      this.winScreen.image = this.winGameImg;
     }
     
     drawGame() {
       clear();
-      // console.log(frameCount)
       this.background.drawBackground()
       this.player.drawPlayer()
 
       
       
       if (frameCount % 107 === 0) {
-        // console.log('Brown:',frameCount)
         this.obstacles.push(new Obstacle(this.carImg))
       }
 
-      if (frameCount % 137 === 0) {
-        // console.log('Orange car:',frameCount)
+      if (frameCount % 139 === 0) {
         this.obstacles.push(new Obstacle(this.orangeCarImg))
       }
 
-      if (frameCount % 221 === 0) {
-        // console.log('Racing car:',frameCount)
+      if (frameCount % 226 === 0) {
         this.obstacles.push(new ObstacleLane3(this.racingCarImg))
       }
 
       if (frameCount % 187 === 0) {
-        // console.log('Orange car:',frameCount)
         this.obstacles.push(new ObstacleLane3(this.orangeCarImg))
       }
 
       if (frameCount % 122 === 0) {
-        // console.log('Orange car:',frameCount)
         this.obstacles.push(new ObstacleLane5(this.orangeCarImg))
       }
 
-      if (frameCount % 183 === 0) {
-        // console.log('Orange car:',frameCount)
+      if (frameCount % 163 === 0) {
         this.obstacles.push(new ObstacleLane5(this.carImg))
       }
 
-      if (frameCount % 131 === 0) {
-        // console.log('truck:',frameCount)
+      if (frameCount % 149 === 0) {
         this.trucks.push(new TruckObstacle(this.truckImg))
       }
 
-      if (frameCount % 171 === 0 && frameCount > 2300) {
-        // console.log('truck:',frameCount)
+      if (frameCount % 178 === 0 && frameCount > 2300) {
         this.trucks.push(new TruckObstacle(this.truckImg))
       }
 
-      if (frameCount % 234 === 0) {
+      if (frameCount % 369 === 0) {
         this.coins1.push(new Coin1(this.coin1Img))
       }
-      if (frameCount % 369 === 0) {
+      if (frameCount % 470 === 0) {
         this.coins5.push(new Coin5(this.coin5Img))
       }
       if (frameCount > 2500 && frameCount % 99 === 0 ) {
@@ -110,9 +109,9 @@ class Game {
           this.score += 2500
           document.querySelector('h2 span').innerHTML = `€${this.score}`;
           if (this.score >= 7500) {
-            this.coin5Img = loadImage("2D Traffic Racer Assets/explosion.gif")
             frameRate(0);
-            alert(`You won! You raised enough cash to join Ironhack. Click on ok and then new game to start again`)
+            this.winScreen.drawScreen();
+            // alert(`You won! You raised enough cash to join Ironhack. Click on ok and then new game to start again`)
           }
           return false
         } else {
@@ -125,12 +124,8 @@ class Game {
           this.score += 1000
           document.querySelector('h2 span').innerHTML = `€${this.score}`;
           if (this.score >= 7500) {
-            this.coin1Img = loadImage("2D Traffic Racer Assets/explosion.gif")
-
             frameRate(0);
-            alert(`You won! You raised enough cash to join Ironhack. Click on ok and then new game to start again`)
-          
-            
+            this.winScreen.drawScreen();                     
           }
           return false
         } else {
@@ -141,8 +136,8 @@ class Game {
       this.trucks = this.trucks.filter((truck) => {
         if(truck.collision(this.player)) {
           frameRate(0);
-          alert(`You crashed! You collected €${this.score}, which is not enough for Ironhack. Press okay and then new game to start again.`)
-          // location.reload()
+          this.screen.drawScreen();
+          // alert(`You crashed! You collected €${this.score}, which is not enough for Ironhack. Press okay and then new game to start again.`)
             return false
         } else {
             return true
@@ -152,8 +147,8 @@ class Game {
       this.obstacles = this.obstacles.filter((obstacle) => {
         if(obstacle.collision(this.player)) {
           frameRate(0);
-          alert(`You crashed! You collected €${this.score}, which is not enough for Ironhack. Press okay and then new game to start again.`)
-          // location.reload()
+          this.screen.drawScreen();
+          // alert(`You crashed! You collected €${this.score}, which is not enough for Ironhack. Press okay and then new game to start again.`)
           return false
         } else {
           return true
